@@ -1,7 +1,7 @@
 ---
 title: "Week 02: COVID Visualization Activity"
 date: "September, 11 2023"
-author: "**`[[`**Your Name**`]]`**"
+author: "Kiril Yakusevych"
 ---
 
 Today, we'll be working with a data set related to COVID.
@@ -39,3 +39,26 @@ covid_data_count |>
 2. Are there any conclusions you can draw?
 3. What were you not able to do due to not having the R knowledge?
 4. What other data would be useful to better understand this data?
+
+
+
+```{r sample_code}
+covid_data_long |>
+  filter(state == "FL") |>
+  filter(race == "Total") |>
+  ggplot(aes(x = date, y = count, color = count_type)) + 
+  geom_line() +
+  
+  labs(x = ' ', y = 'Count', title = 'Covid infection, death, and hospitalization rate in Florida', color = ' ') +
+  scale_x_date(labels = scales::date_format("%B %Y")) +
+  scale_y_continuous(labels = scales::comma)
+```
+
+In this graph, I tried to plot the total number of Covid cases in the state of Florida against the total number of deaths and hospitalizations in the same state.
+
+From the plot alone, we can draw a conclusion that the number of deaths and hospitalizations is substantially lower than the total number of cases in the state.
+
+Initially I wanted to compare this data to 3-5 states on one graph and not use hospitalization, but due to the lack of R knowledge I couldn't do it.
+
+I think it would be interesting to instead use cases/deaths per capita and then compare different states.
+
